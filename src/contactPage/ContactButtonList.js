@@ -5,7 +5,14 @@ class ContactsListButtons extends Component {
   render() {
     return (
       <div>
-      <Button bsStyle="primary">Primary</Button>
+        <ul>
+          <li>
+      <Button bsStyle="primary">Facebook</Button>
+          </li>
+          <li>
+        <Button bsStyle="warning">Myspace</Button>
+          </li>
+          </ul>
   </div>
     );
   }

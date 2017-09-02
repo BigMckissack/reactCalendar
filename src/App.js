@@ -1,27 +1,55 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import logo from './logo.svg';
-import ContactsListButtons from './ContactButtonList.js';
-import Basic from './Basic.js';
+import ContactsListButtons from './contactPage/ContactButtonList.js';
+import Basic from './calendarPage/Basic.js';
+import ContactPage from './contactPage/ContactPage.js';
+import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
 import './App.css';
+import './contactPage/ContactList.css';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <ContactsListButtons></ContactsListButtons>
-        <div className="tall">
-        <Basic></Basic>
-        </div>
-      </div>
-    );
-  }
+    constructor(props) {
+        super(props);
+        this.state = {
+            tabIndex: 0
+        };
+    }
+
+    //disabledTabClassName="react-tabs__tab--disabled" disabled={false}
+    
+    render() {
+        return (
+            <div className="App">
+                <div>
+                <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
+                    <TabList>
+                        <Tab>Contacts</Tab>
+                        <Tab>Calendar</Tab>
+                    </TabList>
+
+                    <TabPanel>
+                        <h2>Contact View</h2>
+                            <ContactPage></ContactPage>
+                    </TabPanel>
+                    <TabPanel>
+                        <div className="tall">
+                            <h2>Calendar View</h2>
+                            <Basic></Basic>
+                        </div>
+                    </TabPanel>
+                </Tabs>
+                    </div>
+            </div>
+        );
+    }
+
+    // openModal() {
+    //     this.setState({ isModalOpen: true })
+    // }
+    //
+    // closeModal() {
+    //     this.setState({ isModalOpen: false })
+    // }
 }
 
 export default App;

@@ -36,8 +36,8 @@ export default [
   },
   {
     'title': 'Meeting',
-    'start': new Date(2015, 3, 12, 10, 30, 0, 0),
-    'end': new Date(2015, 3, 12, 12, 30, 0, 0),
+    'start': new Date(2017, 8, 5, 10, 30, 0, 0),
+    'end': new Date(2017, 8, 5, 12, 30, 0, 0),
     desc: 'Pre-meeting meeting, to prepare for the meeting'
   },
   {
