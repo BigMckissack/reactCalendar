@@ -12,24 +12,17 @@ var ContactList = React.createClass({
         },
         getInitialState: function(){
             return {
-                initialItems: [
-                    "Apples",
-                    "Broccoli",
-                    "Chicken",
-                    "Bacon",
-                    "Eggs",
-                    "Salmon",
-                    "Granola",
-                    "Bananas",
-                    "Beer",
-                    "Wine",
-                    "Yogurt"
-                ],
-                items: []
+                initialItems: [],
+                items:[]
             }
         },
         componentWillMount: function(){
-            this.setState({items: this.state.initialItems})
+            this.setState({items: this.props.contacts});
+                this.setState({initialItems: this.props.contacts});
+        },
+        componentWillReceiveProps(nextProps){
+            this.setState({items: this.props.contacts});
+            this.setState({initialItems: this.props.contacts});
         },
         render: function(){
             return (
@@ -40,14 +33,15 @@ var ContactList = React.createClass({
             );
         }
     });
+    //state.items
 
     var List = React.createClass({
         render: function(){
             return (
                 <ul>
                     {
-                        this.props.items.map(function(item) {
-                            return <li key={item}>{item}</li>
+                        this.props.items.map(function(item,index) {
+                            return <li key={index}>{item}</li>
                         })
                     }
                 </ul>

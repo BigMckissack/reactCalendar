@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import logo from './logo.svg';
 import ContactsListButtons from './contactPage/ContactButtonList.js';
-import Basic from './calendarPage/Basic.js';
+import Basic from './calendarPage/CalendarPage.js';
 import ContactPage from './contactPage/ContactPage.js';
 import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
 import './App.css';

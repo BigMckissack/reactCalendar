@@ -2,7 +2,11 @@ import React from 'react';
 import BigCalendar from 'react-big-calendar';
 import events from '../events';
 import moment from 'moment';
-import Modal from '../Modal.js';
+import Modal from './Modal.js';
+import {Tab, Tabs, TabList, TabPanel} from 'react-tabs';
+import ContactList from '../contactPage/ContactList';
+import './CalendarPage.css';
+import {Button} from 'react-bootstrap';
 import ContactButtonList from '../contactPage/ContactButtonList.js';
 
 // let allViews = Object.keys(BigCalendar.views).map(k => BigCalendar.views[k])
@@ -11,7 +15,8 @@ BigCalendar.momentLocalizer(moment);
 let Basic = React.createClass({
   getInitialState(){
     return{
-      isModalOpen: false
+      isModalOpen: false,
+      tabIndex: 0
     };
   },
   render(){
@@ -36,10 +41,35 @@ let Basic = React.createClass({
               onSelectEvent={event => {}}
               onSelectSlot={(slotInfo) => this.openModal(slotInfo.start)}
           />
-            <Modal width="500" height="400" isOpen={this.state.isModalOpen} onClose={() => this.closeModal()} >
+            <Modal className="hook" width="800" height="400" isOpen={this.state.isModalOpen} onClose={() => this.closeModal()} >
+              <div className="blue-bg">
               <h1>{this.state.dateClicked}</h1>
-              <ContactButtonList></ContactButtonList>
-              <p><button onClick={() => this.closeModal()}>Close</button></p>
+                </div>
+              <Tabs selectedIndex={this.state.tabIndex} onSelect={tabIndex => this.setState({ tabIndex })}>
+                <TabList>
+                  <Tab>Recipient</Tab>
+                  <Tab>Personalize</Tab>
+                  <Tab>Amount</Tab>
+                </TabList>
+
+                <TabPanel>
+                  <h2>Choose a recipient</h2>
+                  <div className="holder">
+                  <ContactList contacts={JSON.parse(localStorage.getItem('contacts'))}></ContactList>
+                  </div>
+                    <p><button onClick={() => this.closeModal()}>Close</button></p>
+                </TabPanel>
+                <TabPanel>
+                    <h2>Upload media file</h2>
+                  <Button>Upload</Button>
+                  <h2>Create Memory</h2>
+                  <Button>Record Video</Button>
+                  <Button>Take Picture</Button>
+                </TabPanel>
+                <TabPanel>
+                  <h2>P3</h2>
+                </TabPanel>
+              </Tabs>
             </Modal>
           </div>
     )
